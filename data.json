@@ -32,22 +32,8 @@
       "slug": "translocations",
       "name": "Translocations",
       "description": "",
-      "coverImage": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
-      "cases": [
-        {
-          "slug": "fValHis_CNAG",
-          "name": "fValHis — CNAG",
-          "description": "",
-          "coverImage": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
-          "images": [
-            {
-              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
-              "alt": "fValHis_CNAG 01",
-              "caption": "Off-diagonal stripe indicating inter-chromosomal contact."
-            }
-          ]
-        }
-      ]
+      "coverImage": null,
+      "cases": []
     },
     {
       "slug": "duplications",
