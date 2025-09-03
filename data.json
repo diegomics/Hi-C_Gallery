@@ -6,19 +6,14 @@
       "slug": "inversions",
       "name": "Inversions",
       "description": "",
-      "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+      "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_02.png",
       "cases": [
         {
           "slug": "mEleMax1_DToL",
           "name": "mEleMax1 — DToL",
           "description": "",
-          "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+          "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_02.png",
           "images": [
-            {
-              "src": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
-              "alt": "mEleMax1_DToL 01",
-              "caption": "Corner-like contact enrichment consistent with an inversion."
-            },
             {
               "src": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_02.png",
               "alt": "mEleMax1_DToL 02",
