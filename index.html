@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hi‑C Gallery</title>
+  <meta name="description" content="A simple 3‑ or 4‑level gallery for Hi‑C contact maps with two browsing modes: by feature type or by ToLID." />
+  <style>
+    :root {
+      --bg: #0b1020; --bg-soft: #121935; --card: #111831; --text: #e8ecff; --muted: #b6c0ff; --accent: #6ea3ff;
+      --shadow: 0 10px 25px rgba(0,0,0,.35); --radius: 16px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f7f8ff; --bg-soft: #eef1ff; --card: #ffffff; --text: #0b1020; --muted: #35406e; --accent: #315efb; --shadow: 0 10px 25px rgba(17, 24, 49, .12);}  
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; background: radial-gradient(1200px 600px at 70% -10%, var(--bg-soft), var(--bg)), var(--bg); color: var(--text); font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 18px 18px 48px; }
+
+    header.site { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 8px; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), #9f8bff); box-shadow: var(--shadow); }
+    h1 { font-size: 1.25rem; margin: 0; letter-spacing: 0.3px; }
+    .breadcrumbs { font-size: .9rem; opacity: .8; margin-top: 2px; }
+
+    .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    button, .tab { background: var(--card); color: var(--text); border: 1px solid rgba(255,255,255,.08); padding: 8px 12px; border-radius: 10px; cursor: pointer; box-shadow: var(--shadow); }
+    button:hover, .tab:hover { border-color: rgba(255,255,255,.22); transform: translateY(-1px); }
+    button:active, .tab:active { transform: translateY(0); }
+    .tabs { display: flex; gap: 8px; background: rgba(255,255,255,.04); padding: 6px; border-radius: 12px; border: 1px solid rgba(255,255,255,.08); }
+    .tab.active { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border-color: rgba(255,255,255,.22); font-weight: 700; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+    .card { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--card); aspect-ratio: 1/1; box-shadow: var(--shadow); display: block; outline: none; border: 1px solid rgba(255,255,255,.06); }
+    .card:hover .cover { transform: scale(1.04); filter: saturate(1.03); }
+    .cover { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s ease; }
+    .label { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 12px; color: #fff; font-weight: 700; text-shadow: 0 1px 10px rgba(0,0,0,.45); background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 100%); }
+    .sub { display:block; font-weight: 500; font-size: .8rem; opacity: .9; }
+
+    .lead { margin: 14px 0 20px; color: var(--muted); }
+    .section-title { font-size: 1.1rem; margin: 6px 0 14px; opacity: .95; }
+
+    .gallery { display: grid; gap: 12px; }
+    .stage { display: grid; gap: 10px; justify-items: center; }
+    .stage img { max-width: 100%; height: auto; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.06); }
+    figure { margin: 0; }
+    figcaption { margin-top: 6px; color: var(--muted); font-size: .95rem; text-align: center; }
+    .pager { display: flex; gap: 8px; align-items: center; justify-content: center; }
+    .badge { font-size: .85rem; opacity: .8; padding: 6px 10px; border-radius: 999px; background: var(--card); border: 1px solid rgba(255,255,255,.06); }
+
+    .empty { padding: 40px; text-align: center; border-radius: var(--radius); background: var(--card); border: 1px dashed rgba(255,255,255,.15); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body>
+  <header class="site container">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1 id="siteTitle">Hi‑C Gallery</h1>
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Breadcrumbs"></nav>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="tabs" role="tablist" aria-label="Browse mode">
+        <button class="tab" id="tabType" role="tab" aria-selected="true">By type</button>
+        <button class="tab" id="tabTolid" role="tab" aria-selected="false">By ToLID</button>
+      </div>
+      <button id="homeBtn" aria-label="Go to home">Home</button>
+      <button id="backBtn" aria-label="Go back">⟵ Back</button>
+    </div>
+  </header>
+
+  <main class="container" id="app" role="main" aria-live="polite"></main>
+
+  <script>
+    // ======= CONFIG / CONSTANTS =======
+    const TYPE_TO_CAT = { inversion: 'inversions', translocation: 'translocations', duplication: 'duplications' };
+    const CAT_TO_TYPE = { inversions: 'inversion', translocations: 'translocation', duplications: 'duplication' };
+
+    const TOLID_KEY = {
+      a: 'amphibia', b: 'birds', c: 'non-vascular plants', d: 'dicotyledons', e: 'echinoderms',
+      f: 'fishes', g: 'fungi', h: 'platyhelminths', i: 'insects', j: 'jellyfish and other cnidaria',
+      k: 'other chordates', l: 'monocotyledons', m: 'mammals', n: 'nematodes', o: 'sponges',
+      p: 'protists', q: 'other arthropods', r: 'reptiles', s: 'sharks', t: 'other animal phyla',
+      u: 'algae', v: 'other vascular plants', w: 'annelids', x: 'molluscs', y: 'bacteria', z: 'archae'
+    };
+
+    // ======= DATA LOADING =======
+    const inlineSiteData = { // minimal demo; real data comes from data.json when present
+      title: "Hi‑C Gallery",
+      tagline: "Explore Hi‑C contact maps by type ⇄ ToLID.",
+      categories: []
+    };
+
+    const $ = (sel, parent=document) => parent.querySelector(sel);
+    let DATA = null; // loaded data.json or inline fallback
+    let CASES = [];  // flattened cases with helpers
+
+    async function loadData() {
+      try {
+        const res = await fetch('data.json', { cache: 'no-store' });
+        if (res.ok) { DATA = await res.json(); return; }
+      } catch(_){}
+      DATA = inlineSiteData;
+    }
+
+    function normCaseSlug(slug){ return slug.replace(/^case_/,''); }
+    function splitCaseSlug(slug){ const base=normCaseSlug(slug); const i=base.indexOf('_'); return { species: i>0? base.slice(0,i): base, author: i>0? base.slice(i+1): ''}; }
+
+    function buildIndex() {
+      CASES = [];
+      for (const cat of (DATA.categories||[])) {
+        const type = CAT_TO_TYPE[cat.slug] || cat.slug;
+        for (const cs of (cat.cases||[])) {
+          const {species, author} = splitCaseSlug(cs.slug);
+          const letter = (species||'')[0]?.toLowerCase() || '#';
+          CASES.push({
+            catSlug: cat.slug, type, caseSlug: cs.slug, caseName: cs.name, coverImage: cs.coverImage,
+            images: cs.images||[], species, author, letter
+          });
+        }
+      }
+    }
+
+    // ======= NAV / BREADCRUMBS =======
+    function setTitle(title) { document.title = title ? `${title} · Hi‑C Gallery` : 'Hi‑C Gallery'; }
+    function breadcrumb(parts) { $('#breadcrumbs').innerHTML = [ `<a href="#/">Home</a>`, ...parts ].join(' / '); }
+
+    function setActiveTab(mode){
+      const isType = mode === 'type';
+      $('#tabType').classList.toggle('active', isType); $('#tabType').setAttribute('aria-selected', String(isType));
+      $('#tabTolid').classList.toggle('active', !isType); $('#tabTolid').setAttribute('aria-selected', String(!isType));
+    }
+
+    // ======= RENDER HELPERS =======
+    function renderCards(items){ return items.map(item => `
+      <a class="card" href="${item.href}" aria-label="${item.aria||item.title}">
+        <img class="cover" src="${item.img||''}" alt="${item.alt||item.title}" />
+        <span class="label">${item.title}${item.sub? `<span class="sub">${item.sub}</span>`:''}</span>
+      </a>`).join(''); }
+
+    function countImages(filterFn){ return CASES.filter(filterFn).reduce((acc,c)=> acc + (c.images?.length||0), 0); }
+
+    function tolidGroupsForType(type){
+      // {letter: Set(tolid)} only where data exists for that type
+      const map = new Map();
+      for (const c of CASES) if (c.type===type){
+        const L = c.letter; if (!map.has(L)) map.set(L, new Set()); map.get(L).add(c.species);
+      }
+      return map; // letters present
+    }
+
+    function casesForTypeLetter(type, letter){
+      // group by tolid (species)
+      const byTol = new Map();
+      for (const c of CASES) if (c.type===type && c.letter===letter){
+        if (!byTol.has(c.species)) byTol.set(c.species, []); byTol.get(c.species).push(c);
+      }
+      return byTol; // Map: tolid -> [cases]
+    }
+
+    function typesForTolID(tolid){
+      const set = new Set(CASES.filter(c=>c.species===tolid).map(c=>c.type));
+      return [...set];
+    }
+
+    function imagesForTolIDType(tolid, type){
+      // concat images across all cases for this tolid+type
+      const list = [];
+      for (const c of CASES) if (c.species===tolid && c.type===type){
+        for (const img of (c.images||[])) list.push({ ...img, fromCase: c.caseSlug });
+      }
+      return list;
+    }
+
+    // ======= MODE A: BY TYPE =======
+    function viewA_Level1(){
+      setTitle('Browse by type'); setActiveTab('type'); breadcrumb([]);
+      const cats = [
+        {key:'inversion', name:'Inversion'},
+        {key:'translocation', name:'Translocation'},
+        {key:'duplication', name:'Duplication'}
+      ];
+      const cards = cats.map(cat=>{
+        const imgCount = countImages(c=>c.type===cat.key);
+        if (!imgCount) return null;
+        const cover = (DATA.categories.find(x=>CAT_TO_TYPE[x.slug]===cat.key)?.coverImage) || '';
+        return { href:`#/browse/type/${cat.key}`, img:cover, title:cat.name, sub:`${imgCount} image(s)` };
+      }).filter(Boolean);
+      $('#app').innerHTML = `
+        <section>
+          <h2 class="section-title">Level 1 — By feature type</h2>
+          <p class="lead">Choose a structural variant type to explore.</p>
+          <div class="grid">${cards.length? renderCards(cards): '<div class="empty">No data yet.</div>'}</div>
+        </section>`;
+    }
+
+    function viewA_Level2(type){
+      setTitle(\`Type: \${type}\`); setActiveTab('type');
+      breadcrumb([`<a href="#/browse/type">By type</a>`, type]);
+      const grp = tolidGroupsForType(type);
+      const items = [];
+      for (const [letter, set] of [...grp.entries()].sort((a,b)=> a[0].localeCompare(b[0]))){
+        const label = \`\${letter} — \${TOLID_KEY[letter]||'other'}\`;
+        const imgCount = countImages(c=>c.type===type && c.letter===letter);
+        const anyCase = CASES.find(c=>c.type===type && c.letter===letter);
+        items.push({ href:`#/browse/type/${type}/${letter}`, img:anyCase?.coverImage||'', title:label, sub:\`\${set.size} ToLID(s) · \${imgCount} image(s)\` });
+      }
+      $('#app').innerHTML = `
+        <section>
+          <h2 class="section-title">Level 2 — ${type} · ToLID letters</h2>
+          <div class="grid">${items.length? renderCards(items): '<div class="empty">No data in this type.</div>'}</div>
+        </section>`;
+    }
+
+    function viewA_Level3(type, letter){
+      setTitle(\`\${type} · \${letter}\`); setActiveTab('type');
+      breadcrumb([`<a href="#/browse/type">By type</a>`, `<a href="#/browse/type/${type}">${type}</a>`, `${letter}`]);
+      const map = casesForTypeLetter(type, letter);
+      const items = [];
+      for (const [tolid, arr] of [...map.entries()].sort((a,b)=> a[0].localeCompare(b[0]))){
+        const cover = arr[0]?.coverImage || '';
+        const imgCount = arr.reduce((s,c)=> s + (c.images?.length||0), 0);
+        items.push({ href:`#/browse/type/${type}/${letter}/${tolid}`, img:cover, title:tolid, sub:\`\${arr.length} case(s) · \${imgCount} image(s)\`});
+      }
+      $('#app').innerHTML = `
+        <section>
+          <h2 class="section-title">Level 3 — ToLIDs starting with “${letter}”</h2>
+          <div class="grid">${items.length? renderCards(items): '<div class="empty">No ToLIDs for this letter.</div>'}</div>
+        </section>`;
+    }
+
+    function viewA_Level4(type, letter, tolid){
+      setTitle(\`\${tolid} · \${type}\`); setActiveTab('type');
+      breadcrumb([`<a href="#/browse/type">By type</a>`, `<a href="#/browse/type/${type}">${type}</a>`, `<a href="#/browse/type/${type}/${letter}">${letter}</a>`, tolid]);
+      const imgs = imagesForTolIDType(tolid, type);
+      if (!imgs.length){ $('#app').innerHTML = '<div class="empty">No images found for this selection.</div>'; return; }
+      let idx = 0;
+      function render(){ const it = imgs[idx]; $('#app').innerHTML = `
+        <section class="gallery">
+          <h2 class="section-title">Level 4 — ${tolid} · ${type}</h2>
+          <div class="stage">
+            <figure>
+              <img src="${it.src}" alt="${it.alt||''}"><figcaption>${it.caption||''}</figcaption>
+            </figure>
+            <div class="pager">
+              <button id="prevBtn">⟵ Prev</button>
+              <span class="badge">${idx+1} / ${imgs.length}</span>
+              <button id="nextBtn">Next ⟶</button>
+            </div>
+          </div>
+        </section>`;
+        $('#prevBtn').onclick=()=>{ idx=(idx-1+imgs.length)%imgs.length; render(); };
+        $('#nextBtn').onclick=()=>{ idx=(idx+1)%imgs.length; render(); };
+      }
+      render();
+    }
+
+    // ======= MODE B: BY TOLID =======
+    function viewB_Level1(){
+      setTitle('Browse by ToLID'); setActiveTab('tolid'); breadcrumb([]);
+      const letters = new Map();
+      for (const c of CASES){ if (!letters.has(c.letter)) letters.set(c.letter, {countTolids:new Set(), cover:c.coverImage}); letters.get(c.letter).countTolids.add(c.species); }
+      const items = [...letters.entries()].sort((a,b)=> a[0].localeCompare(b[0])).map(([L,info])=>({
+        href:`#/browse/tolid/${L}`, img: info.cover, title:`${L} — ${TOLID_KEY[L]||'other'}`, sub:`${info.countTolids.size} ToLID(s)`
+      }));
+      $('#app').innerHTML = `
+        <section>
+          <h2 class="section-title">Level 1 — By ToLID (letter groups)</h2>
+          <div class="grid">${items.length? renderCards(items): '<div class="empty">No data yet.</div>'}</div>
+        </section>`;
+    }
+
+    function viewB_Level2(letter){
+      setTitle(\`ToLIDs · \${letter}\`); setActiveTab('tolid');
+      breadcrumb([`<a href="#/browse/tolid">By ToLID</a>`, `${letter}`]);
+      const byTol = new Map();
+      for (const c of CASES) if (c.letter===letter){ if (!byTol.has(c.species)) byTol.set(c.species, []); byTol.get(c.species).push(c); }
+      const items = [...byTol.entries()].sort((a,b)=> a[0].localeCompare(b[0])).map(([tolid, arr])=>{
+        const cover = arr[0]?.coverImage || '';
+        return { href:`#/browse/tolid/${letter}/${tolid}`, img: cover, title: tolid, sub: `${arr.length} case(s)` };
+      });
+      $('#app').innerHTML = `
+        <section>
+          <h2 class="section-title">Level 2 — ToLIDs starting with “${letter}”</h2>
+          <div class="grid">${items.length? renderCards(items): '<div class="empty">No ToLIDs for this letter.</div>'}</div>
+        </section>`;
+    }
+
+    function viewB_Level3(letter, tolid){
+      setTitle(\`\${tolid} · types\`); setActiveTab('tolid');
+      breadcrumb([`<a href="#/browse/tolid">By ToLID</a>`, `<a href="#/browse/tolid/${letter}">${letter}</a>`, tolid]);
+      const available = typesForTolID(tolid);
+      const items = available.map(t=>{
+        const coverCase = CASES.find(c=>c.species===tolid && c.type===t);
+        const imgCount = countImages(c=>c.species===tolid && c.type===t);
+        return { href:`#/browse/tolid/${letter}/${tolid}/${t}`, img: coverCase?.coverImage||'', title: t, sub: `${imgCount} image(s)` };
+      });
+      $('#app').innerHTML = `
+        <section>
+          <h2 class="section-title">Level 3 — ${tolid} by type</h2>
+          <div class="grid">${items.length? renderCards(items): '<div class="empty">No types available for this ToLID.</div>'}</div>
+        </section>`;
+    }
+
+    function viewB_Level4(letter, tolid, type){
+      setTitle(\`\${tolid} · \${type}\`); setActiveTab('tolid');
+      breadcrumb([`<a href="#/browse/tolid">By ToLID</a>`, `<a href="#/browse/tolid/${letter}">${letter}</a>`, `<a href="#/browse/tolid/${letter}/${tolid}">${tolid}</a>`, type]);
+      const imgs = imagesForTolIDType(tolid, type);
+      if (!imgs.length){ $('#app').innerHTML = '<div class="empty">No images found for this selection.</div>'; return; }
+      let idx = 0; function render(){ const it = imgs[idx]; $('#app').innerHTML = `
+        <section class="gallery">
+          <h2 class="section-title">Level 4 — ${tolid} · ${type}</h2>
+          <div class="stage"><figure><img src="${it.src}" alt="${it.alt||''}"><figcaption>${it.caption||''}</figcaption></figure>
+          <div class="pager"><button id="prevBtn">⟵ Prev</button><span class="badge">${idx+1} / ${imgs.length}</span><button id="nextBtn">Next ⟶</button></div></div>
+        </section>`; $('#prevBtn').onclick=()=>{ idx=(idx-1+imgs.length)%imgs.length; render(); }; $('#nextBtn').onclick=()=>{ idx=(idx+1)%imgs.length; render(); }; }
+      render();
+    }
+
+    // ======= ROUTER =======
+    function handleRoute(){
+      const hash = location.hash.replace(/^#\/?/, '');
+      const parts = hash.split('/').filter(Boolean);
+      if (parts.length===0) return location.hash = '#/browse/type';
+
+      if (parts[0]==='browse' && parts[1]==='type'){
+        if (!parts[2]) return viewA_Level1();
+        const type = parts[2];
+        if (!parts[3]) return viewA_Level2(type);
+        const letter = parts[3];
+        if (!parts[4]) return viewA_Level3(type, letter);
+        const tolid = parts[4];
+        return viewA_Level4(type, letter, tolid);
+      }
+
+      if (parts[0]==='browse' && parts[1]==='tolid'){
+        if (!parts[2]) return viewB_Level1();
+        const letter = parts[2];
+        if (!parts[3]) return viewB_Level2(letter);
+        const tolid = parts[3];
+        if (!parts[4]) return viewB_Level3(letter, tolid);
+        const type = parts[4];
+        return viewB_Level4(letter, tolid, type);
+      }
+
+      // fallback
+      viewA_Level1();
+    }
+
+    // ======= EVENTS & BOOT =======
+    $('#homeBtn').onclick = () => { location.hash = '#/browse/type'; };
+    $('#backBtn').onclick = () => { history.length > 1 ? history.back() : (location.hash = '#/browse/type'); };
+    $('#tabType').onclick = () => { location.hash = '#/browse/type'; };
+    $('#tabTolid').onclick = () => { location.hash = '#/browse/tolid'; };
+
+    (async function init(){
+      await loadData(); buildIndex();
+      $('#siteTitle').textContent = DATA.title || 'Hi‑C Gallery';
+      if (!location.hash) location.hash = '#/browse/type';
+      window.addEventListener('hashchange', handleRoute);
+      handleRoute();
+      document.onkeydown = (e) => { if (e.key==='ArrowLeft') $('#prevBtn')?.click(); if (e.key==='ArrowRight') $('#nextBtn')?.click(); };
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "title": "Hi-C Gallery",
+  "tagline": "Explore Hi-C contact maps by category → case → annotated views.",
+  "categories": [
+    {
+      "slug": "inversions",
+      "name": "Inversions",
+      "description": "",
+      "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+      "cases": [
+        {
+          "slug": "mEleMax1_DToL",
+          "name": "mEleMax1 — DToL",
+          "description": "",
+          "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+          "images": [
+            {
+              "src": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+              "alt": "mEleMax1_DToL 01",
+              "caption": "Corner-like contact enrichment consistent with an inversion."
+            },
+            {
+              "src": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_02.png",
+              "alt": "mEleMax1_DToL 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "translocations",
+      "name": "Translocations",
+      "description": "",
+      "coverImage": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
+      "cases": [
+        {
+          "slug": "fValHis_CNAG",
+          "name": "fValHis — CNAG",
+          "description": "",
+          "coverImage": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
+          "images": [
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
+              "alt": "fValHis_CNAG 01",
+              "caption": "Off-diagonal stripe indicating inter-chromosomal contact."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "duplications",
+      "name": "Duplications",
+      "description": "",
+      "coverImage": null,
+      "cases": []
+    }
+  ]
+}
