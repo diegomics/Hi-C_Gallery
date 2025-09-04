@@ -1,4 +1,5 @@
 # Hi-C Gallery
+https://diegomics.github.io/Hi-C_Gallery
 
 A static, GitHub Pages-friendly site for Hi-C contact maps with two browse modes:
 
