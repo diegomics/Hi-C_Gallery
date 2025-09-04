@@ -1,0 +1,27 @@
+{
+  "title": "Hi-C Gallery",
+  "tagline": "Explore Hi-C contact maps by category → case → annotated views.",
+  "categories": [
+    {
+      "slug": "inversions",
+      "name": "Inversions",
+      "description": "",
+      "coverImage": null,
+      "cases": []
+    },
+    {
+      "slug": "translocations",
+      "name": "Translocations",
+      "description": "",
+      "coverImage": null,
+      "cases": []
+    },
+    {
+      "slug": "duplications",
+      "name": "Duplications",
+      "description": "",
+      "coverImage": null,
+      "cases": []
+    }
+  ]
+}
