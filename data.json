@@ -59,6 +59,44 @@
               "caption": "Zoomed region highlighting the inferred breakpoint."
             }
           ]
+        },
+        {
+          "slug": "fValHis_CNAG",
+          "name": "fValHis — CNAG",
+          "description": "",
+          "coverImage": "images/fValHis_CNAG/duplication_fValHis_CNAG_01.png",
+          "images": [
+            {
+              "src": "images/fValHis_CNAG/duplication_fValHis_CNAG_01.png",
+              "alt": "fValHis_CNAG 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/inversion_fValHis_CNAG_01.png",
+              "alt": "fValHis_CNAG 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
+              "alt": "fValHis_CNAG 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/inversion_fValHis_CNAG_02.png",
+              "alt": "fValHis_CNAG 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_02.png",
+              "alt": "fValHis_CNAG 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_03.png",
+              "alt": "fValHis_CNAG 03",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
         }
       ]
     }
