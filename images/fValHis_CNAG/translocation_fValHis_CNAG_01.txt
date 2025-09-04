@@ -1,1 +1,0 @@
-Off-diagonal stripe indicating inter-chromosomal contact.
