@@ -20,8 +20,47 @@
       "slug": "duplications",
       "name": "Duplications",
       "description": "",
-      "coverImage": null,
-      "cases": []
+      "coverImage": "images/drZelAbel2_Genoscope/duplication_drZelAbel2_Genoscope_01.png",
+      "cases": [
+        {
+          "slug": "drZelAbel2_Genoscope",
+          "name": "drZelAbel2 — Genoscope",
+          "description": "",
+          "coverImage": "images/drZelAbel2_Genoscope/duplication_drZelAbel2_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/drZelAbel2_Genoscope/duplication_drZelAbel2_Genoscope_01.png",
+              "alt": "drZelAbel2_Genoscope 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_01.png",
+              "alt": "drZelAbel2_Genoscope 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_01.png",
+              "alt": "drZelAbel2_Genoscope 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_02.png",
+              "alt": "drZelAbel2_Genoscope 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_02.png",
+              "alt": "drZelAbel2_Genoscope 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_03.png",
+              "alt": "drZelAbel2_Genoscope 03",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
