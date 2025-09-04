@@ -97,6 +97,34 @@
               "caption": "Zoomed region highlighting the inferred breakpoint."
             }
           ]
+        },
+        {
+          "slug": "idCulMode1_SciLifeLab",
+          "name": "idCulMode1 — SciLifeLab",
+          "description": "",
+          "coverImage": "images/idCulMode1_SciLifeLab/duplication_idCulMode1_SciLifeLab_01.png",
+          "images": [
+            {
+              "src": "images/idCulMode1_SciLifeLab/duplication_idCulMode1_SciLifeLab_01.png",
+              "alt": "idCulMode1_SciLifeLab 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_01.png",
+              "alt": "idCulMode1_SciLifeLab 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/idCulMode1_SciLifeLab/translocation_idCulMode1_SciLifeLab_01.png",
+              "alt": "idCulMode1_SciLifeLab 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_02.png",
+              "alt": "idCulMode1_SciLifeLab 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
         }
       ]
     }
