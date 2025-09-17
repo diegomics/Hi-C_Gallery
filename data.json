@@ -20,6 +20,86 @@
               "caption": "There was a small inversion at the end of scaffold_10 where the telomere has been placed inside the chromosome.\nCuration of ddCitColo1 submitted as ERGA-community genome by @gkanogiannis. More information: https://github.com/ERGA-consortium/EARs/pull/46"
             }
           ]
+        },
+        {
+          "slug": "drZelAbel2_Genoscope",
+          "name": "drZelAbel2 — Genoscope",
+          "description": "",
+          "coverImage": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_01.png",
+              "alt": "drZelAbel2_Genoscope 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_02.png",
+              "alt": "drZelAbel2_Genoscope 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "fValHis_CNAG",
+          "name": "fValHis — CNAG",
+          "description": "",
+          "coverImage": "images/fValHis_CNAG/inversion_fValHis_CNAG_01.png",
+          "images": [
+            {
+              "src": "images/fValHis_CNAG/inversion_fValHis_CNAG_01.png",
+              "alt": "fValHis_CNAG 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/inversion_fValHis_CNAG_02.png",
+              "alt": "fValHis_CNAG 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "idCulMode1_SciLifeLab",
+          "name": "idCulMode1 — SciLifeLab",
+          "description": "",
+          "coverImage": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_01.png",
+          "images": [
+            {
+              "src": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_01.png",
+              "alt": "idCulMode1_SciLifeLab 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_02.png",
+              "alt": "idCulMode1_SciLifeLab 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "mEleMax1_DToL",
+          "name": "mEleMax1 — DToL",
+          "description": "",
+          "coverImage": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+          "images": [
+            {
+              "src": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
+              "alt": "mEleMax1_DToL 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "xbPinRadi1_Genoscope",
+          "name": "xbPinRadi1 — Genoscope",
+          "description": "",
+          "coverImage": "images/xbPinRadi1_Genoscope/inversion_xbPinRadi1_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/xbPinRadi1_Genoscope/inversion_xbPinRadi1_Genoscope_01.png",
+              "alt": "xbPinRadi1_Genoscope 01",
+              "caption": "There is an invertion at the start of SUPER_10, flip it right after the telomeric segment. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
+            }
+          ]
         }
       ]
     },
@@ -27,8 +107,80 @@
       "slug": "translocations",
       "name": "Translocations",
       "description": "",
-      "coverImage": "images/qqChaLymb1_Genoscope/translocation_qqChaLymb1_Genoscope_01.png",
+      "coverImage": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_01.png",
       "cases": [
+        {
+          "slug": "drZelAbel2_Genoscope",
+          "name": "drZelAbel2 — Genoscope",
+          "description": "",
+          "coverImage": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_01.png",
+              "alt": "drZelAbel2_Genoscope 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_02.png",
+              "alt": "drZelAbel2_Genoscope 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_03.png",
+              "alt": "drZelAbel2_Genoscope 03",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "fValHis_CNAG",
+          "name": "fValHis — CNAG",
+          "description": "",
+          "coverImage": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
+          "images": [
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
+              "alt": "fValHis_CNAG 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_02.png",
+              "alt": "fValHis_CNAG 02",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            },
+            {
+              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_03.png",
+              "alt": "fValHis_CNAG 03",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "idCulMode1_SciLifeLab",
+          "name": "idCulMode1 — SciLifeLab",
+          "description": "",
+          "coverImage": "images/idCulMode1_SciLifeLab/translocation_idCulMode1_SciLifeLab_01.png",
+          "images": [
+            {
+              "src": "images/idCulMode1_SciLifeLab/translocation_idCulMode1_SciLifeLab_01.png",
+              "alt": "idCulMode1_SciLifeLab 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "mEleMax1_DToL",
+          "name": "mEleMax1 — DToL",
+          "description": "",
+          "coverImage": "images/mEleMax1_DToL/translocation_mEleMax1_DToL_01.png",
+          "images": [
+            {
+              "src": "images/mEleMax1_DToL/translocation_mEleMax1_DToL_01.png",
+              "alt": "mEleMax1_DToL 01",
+              "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
         {
           "slug": "qqChaLymb1_Genoscope",
           "name": "qqChaLymb1 — Genoscope",
@@ -60,31 +212,6 @@
               "src": "images/drZelAbel2_Genoscope/duplication_drZelAbel2_Genoscope_01.png",
               "alt": "drZelAbel2_Genoscope 01",
               "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_01.png",
-              "alt": "drZelAbel2_Genoscope 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_01.png",
-              "alt": "drZelAbel2_Genoscope 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/drZelAbel2_Genoscope/inversion_drZelAbel2_Genoscope_02.png",
-              "alt": "drZelAbel2_Genoscope 02",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_02.png",
-              "alt": "drZelAbel2_Genoscope 02",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/drZelAbel2_Genoscope/translocation_drZelAbel2_Genoscope_03.png",
-              "alt": "drZelAbel2_Genoscope 03",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
             }
           ]
         },
@@ -97,31 +224,6 @@
             {
               "src": "images/fValHis_CNAG/duplication_fValHis_CNAG_01.png",
               "alt": "fValHis_CNAG 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/fValHis_CNAG/inversion_fValHis_CNAG_01.png",
-              "alt": "fValHis_CNAG 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_01.png",
-              "alt": "fValHis_CNAG 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/fValHis_CNAG/inversion_fValHis_CNAG_02.png",
-              "alt": "fValHis_CNAG 02",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_02.png",
-              "alt": "fValHis_CNAG 02",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/fValHis_CNAG/translocation_fValHis_CNAG_03.png",
-              "alt": "fValHis_CNAG 03",
               "caption": "Zoomed region highlighting the inferred breakpoint."
             }
           ]
@@ -136,21 +238,6 @@
               "src": "images/idCulMode1_SciLifeLab/duplication_idCulMode1_SciLifeLab_01.png",
               "alt": "idCulMode1_SciLifeLab 01",
               "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_01.png",
-              "alt": "idCulMode1_SciLifeLab 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/idCulMode1_SciLifeLab/translocation_idCulMode1_SciLifeLab_01.png",
-              "alt": "idCulMode1_SciLifeLab 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/idCulMode1_SciLifeLab/inversion_idCulMode1_SciLifeLab_02.png",
-              "alt": "idCulMode1_SciLifeLab 02",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
             }
           ]
         },
@@ -162,16 +249,6 @@
           "images": [
             {
               "src": "images/mEleMax1_DToL/duplication_mEleMax1_DToL_01.png",
-              "alt": "mEleMax1_DToL 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/mEleMax1_DToL/inversion_mEleMax1_DToL_01.png",
-              "alt": "mEleMax1_DToL 01",
-              "caption": "Zoomed region highlighting the inferred breakpoint."
-            },
-            {
-              "src": "images/mEleMax1_DToL/translocation_mEleMax1_DToL_01.png",
               "alt": "mEleMax1_DToL 01",
               "caption": "Zoomed region highlighting the inferred breakpoint."
             }
@@ -187,11 +264,6 @@
               "src": "images/xbPinRadi1_Genoscope/duplication_xbPinRadi1_Genoscope_01.png",
               "alt": "xbPinRadi1_Genoscope 01",
               "caption": "Haplotyoic duplication, characteristic double-V shape with a drop in coverage can be seen at SUPER_2 scaffol around 3.42Mb. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
-            },
-            {
-              "src": "images/xbPinRadi1_Genoscope/inversion_xbPinRadi1_Genoscope_01.png",
-              "alt": "xbPinRadi1_Genoscope 01",
-              "caption": "There is an invertion at the start of SUPER_10, flip it right after the telomeric segment. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
             },
             {
               "src": "images/xbPinRadi1_Genoscope/duplication_xbPinRadi1_Genoscope_02.png",
