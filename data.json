@@ -6,15 +6,43 @@
       "slug": "inversions",
       "name": "Inversions",
       "description": "",
-      "coverImage": null,
-      "cases": []
+      "coverImage": "images/ddCitColo1_gkanogiannis/inversion_ddCitColo1_gkanogiannis_01.png",
+      "cases": [
+        {
+          "slug": "ddCitColo1_gkanogiannis",
+          "name": "ddCitColo1 — gkanogiannis",
+          "description": "",
+          "coverImage": "images/ddCitColo1_gkanogiannis/inversion_ddCitColo1_gkanogiannis_01.png",
+          "images": [
+            {
+              "src": "images/ddCitColo1_gkanogiannis/inversion_ddCitColo1_gkanogiannis_01.png",
+              "alt": "ddCitColo1_gkanogiannis 01",
+              "caption": "There was a small inversion at the end of scaffold_10 where the telomere has been placed inside the chromosome.\nCuration of ddCitColo1 submitted as ERGA-community genome by @gkanogiannis. More information: https://github.com/ERGA-consortium/EARs/pull/46"
+            }
+          ]
+        }
+      ]
     },
     {
       "slug": "translocations",
       "name": "Translocations",
       "description": "",
-      "coverImage": null,
-      "cases": []
+      "coverImage": "images/qqChaLymb1_Genoscope/translocation_qqChaLymb1_Genoscope_01.png",
+      "cases": [
+        {
+          "slug": "qqChaLymb1_Genoscope",
+          "name": "qqChaLymb1 — Genoscope",
+          "description": "",
+          "coverImage": "images/qqChaLymb1_Genoscope/translocation_qqChaLymb1_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/qqChaLymb1_Genoscope/translocation_qqChaLymb1_Genoscope_01.png",
+              "alt": "qqChaLymb1_Genoscope 01",
+              "caption": "The Super 28 shows a false joining that should be brake into two chromosomes at the gap. Curation of the ERGA-BGE genome qqChaLymb1 submitted by @auryjm. More information: https://github.com/ERGA-consortium/EARs/pull/90"
+            }
+          ]
+        }
+      ]
     },
     {
       "slug": "duplications",
@@ -146,6 +174,37 @@
               "src": "images/mEleMax1_DToL/translocation_mEleMax1_DToL_01.png",
               "alt": "mEleMax1_DToL 01",
               "caption": "Zoomed region highlighting the inferred breakpoint."
+            }
+          ]
+        },
+        {
+          "slug": "xbPinRadi1_Genoscope",
+          "name": "xbPinRadi1 — Genoscope",
+          "description": "",
+          "coverImage": "images/xbPinRadi1_Genoscope/duplication_xbPinRadi1_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/xbPinRadi1_Genoscope/duplication_xbPinRadi1_Genoscope_01.png",
+              "alt": "xbPinRadi1_Genoscope 01",
+              "caption": "Haplotyoic duplication, characteristic double-V shape with a drop in coverage can be seen at SUPER_2 scaffol around 3.42Mb. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
+            },
+            {
+              "src": "images/xbPinRadi1_Genoscope/duplication_xbPinRadi1_Genoscope_02.png",
+              "alt": "xbPinRadi1_Genoscope 02",
+              "caption": "Haplotyoic duplication, shows a cross shape and drop in coverage without it being repetitive and the HiC coverage also goes down. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
+            }
+          ]
+        },
+        {
+          "slug": "xgDerLasi_Genoscope",
+          "name": "xgDerLasi — Genoscope",
+          "description": "",
+          "coverImage": "images/xgDerLasi_Genoscope/duplication_xgDerLasi_Genoscope_01.png",
+          "images": [
+            {
+              "src": "images/xgDerLasi_Genoscope/duplication_xgDerLasi_Genoscope_01.png",
+              "alt": "xgDerLasi_Genoscope 01",
+              "caption": "Haplotyoic duplications in region of chrom 1 around 48.1 Mb and 48.7 Mb. Curation of the ERGA-BGE genome xgDerLasi submitted by @CaroB-M. More information: https://github.com/ERGA-consortium/EARs/pull/50"
             }
           ]
         }
