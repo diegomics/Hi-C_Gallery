@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build data.json for the Hi-C Gallery (single-folder layout only).
+"""Build data.json for the Hi-C Gallery (single-folder layout).
 
 Layout:
   images/<speciesID>_<authorID>/
@@ -8,14 +8,17 @@ Layout:
     <type>_<speciesID>_<authorID>_02.png
     <type>_<speciesID>_<authorID>_02.txt
     [cover.png]
+    [cover_inversion.png]
+    [cover_translocation.png]
+    [cover_duplication.png]
 
-Rules:
 - <type> is one of: inversion, translocation, duplication
 - XX is two digits (01, 02, ...). One caption .txt per image (same basename).
-- All images in a case must share the same <type>.
 - Case folder name: (case_)?<speciesID>_<authorID>
+- Mixed types in the same folder are allowed; the builder emits one case per type.
 """
 import json, re, sys
+from itertools import chain
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,7 +32,9 @@ TYPE_TO_SLUG = {
 SLUG_ORDER = ["inversions", "translocations", "duplications"]
 
 CASE_DIR_RE = re.compile(r"^(?:case_)?[A-Za-z0-9]+_[A-Za-z0-9]+$")
-FILE_RE = re.compile(r"^(inversion|duplication|translocation)_([A-Za-z0-9]+)_([A-Za-z0-9]+)_(\d{2})\.png$")
+FILE_RE = re.compile(
+    r"^(inversion|duplication|translocation)_([A-Za-z0-9]+)_([A-Za-z0-9]+)_(\d{2})\.(?:png|PNG)$"
+)
 
 def human_case_name(folder: str) -> str:
     base = re.sub(r"^case_", "", folder)
@@ -41,7 +46,7 @@ def rel(p: Path) -> str:
 
 def list_pngs_sorted(case_dir: Path):
     items = []
-    for p in case_dir.glob("*.png"):
+    for p in chain(case_dir.glob("*.png"), case_dir.glob("*.PNG")):
         m = FILE_RE.match(p.name)
         order = int(m.group(4)) if m else 9999
         items.append((order, p))
@@ -58,9 +63,6 @@ def validate_case(case_dir: Path) -> list[str]:
         return problems
 
     base = re.sub(r"^case_", "", case_dir.name)
-    types_seen = set()
-    idx_seen = set()
-
     for _, png in list_pngs_sorted(case_dir):
         m = FILE_RE.match(png.name)
         if not m:
@@ -69,20 +71,9 @@ def validate_case(case_dir: Path) -> list[str]:
         t, sp, au, xx = m.groups()
         if f"{sp}_{au}" != base:
             problems.append(f"[{case_dir.name}] Folder and file disagree: {png.name}")
-        types_seen.add(t)
-        i = int(xx)
-        if i in idx_seen:
-            problems.append(f"[{case_dir.name}] Duplicate index {xx} in {png.name}")
-        idx_seen.add(i)
         if not png.with_suffix(".txt").exists():
             problems.append(f"[{case_dir.name}] Missing caption TXT for {png.name}")
-
-    if not types_seen:
-        problems.append(f"[{case_dir.name}] No valid images found.")
-    elif len(types_seen) > 1:
-        problems.append(f"[{case_dir.name}] Mixed <type> values: {sorted(types_seen)} (use a single type per case)")
-
-    return problems
+    return problems  # mixed types are fine
 
 def build_data():
     categories = {slug: {"slug": slug, "name": slug[:1].upper() + slug[1:], "description": "", "coverImage": None, "cases": []}
@@ -92,37 +83,46 @@ def build_data():
         raise SystemExit("images/ directory not found")
 
     for case_dir in sorted([p for p in IMG_DIR.iterdir() if p.is_dir()], key=lambda p: p.name.lower()):
-        pngs = [p for _, p in list_pngs_sorted(case_dir) if FILE_RE.match(p.name)]
-        if not pngs:
-            continue
-        m = FILE_RE.match(pngs[0].name)
-        t = m.group(1)
-        cat_slug = TYPE_TO_SLUG[t]
-
-        images = []
+        # group images by type within the folder
+        images_by_type = {"inversion": [], "translocation": [], "duplication": []}
         for _, png in list_pngs_sorted(case_dir):
-            m2 = FILE_RE.match(png.name)
-            if not m2:
+            m = FILE_RE.match(png.name)
+            if not m: 
                 continue
-            _, sp, au, xx = m2.groups()
-            images.append({
+            t, sp, au, xx = m.groups()
+            t = t.lower()
+            images_by_type[t].append({
                 "src": rel(png),
                 "alt": f"{sp}_{au} {xx}",
-                "caption": caption_for(png)
+                "caption": caption_for(png),
+                "order": int(xx),
             })
-        if not images:
-            continue
 
-        cover = case_dir / "cover.png"
-        cover_rel = rel(cover) if cover.exists() else images[0]["src"]
+        # emit one case per type present
+        for t, images in images_by_type.items():
+            if not images:
+                continue
+            cat_slug = TYPE_TO_SLUG[t]
 
-        categories[cat_slug]["cases"].append({
-            "slug": case_dir.name,
-            "name": human_case_name(case_dir.name),
-            "description": "",
-            "coverImage": cover_rel,
-            "images": images
-        })
+            cover_typed = case_dir / f"cover_{t}.png"
+            cover_generic = case_dir / "cover.png"
+            if cover_typed.exists():
+                cover_rel = rel(cover_typed)
+            elif cover_generic.exists():
+                cover_rel = rel(cover_generic)
+            else:
+                cover_rel = images[0]["src"]
+
+            for img in images:
+                img.pop("order", None)
+
+            categories[cat_slug]["cases"].append({
+                "slug": case_dir.name,
+                "name": human_case_name(case_dir.name),
+                "description": "",
+                "coverImage": cover_rel,
+                "images": images
+            })
 
     out_categories = []
     for slug in SLUG_ORDER:
@@ -140,6 +140,12 @@ def build_data():
 
     (ROOT / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
+    # summary in CI logs
+    for cat in out_categories:
+        print(f"[{cat['slug']}] {len(cat['cases'])} case(s)")
+        for cs in cat["cases"]:
+            print(f"  - {cs['slug']}: {len(cs['images'])} image(s)")
+
 if __name__ == "__main__":
     if "--check" in sys.argv:
         problems = []
@@ -149,7 +155,7 @@ if __name__ == "__main__":
             for case_dir in [p for p in IMG_DIR.iterdir() if p.is_dir()]:
                 problems.extend(validate_case(case_dir))
         if problems:
-            print("Validation failed:\n")
+            print("Validation failed:\\n")
             for p in problems:
                 print(" -", p)
             sys.exit(1)
