@@ -1,0 +1,1 @@
+Haplotyoic duplication, shows a cross shape and drop in coverage without it being repetitive and the HiC coverage also goes down. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47

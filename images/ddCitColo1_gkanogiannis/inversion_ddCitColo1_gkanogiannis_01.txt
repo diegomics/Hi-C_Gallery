@@ -1,0 +1,2 @@
+There was a small inversion at the end of scaffold_10 where the telomere has been placed inside the chromosome.
+Curation of ddCitColo1 submitted as ERGA-community genome by @gkanogiannis. More information: https://github.com/ERGA-consortium/EARs/pull/46

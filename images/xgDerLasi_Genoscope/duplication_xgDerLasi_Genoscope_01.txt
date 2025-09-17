@@ -1,0 +1,1 @@
+Haplotyoic duplications in region of chrom 1 around 48.1 Mb and 48.7 Mb. Curation of the ERGA-BGE genome xgDerLasi submitted by @CaroB-M. More information: https://github.com/ERGA-consortium/EARs/pull/50

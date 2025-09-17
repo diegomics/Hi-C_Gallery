@@ -1,0 +1,1 @@
+The Super 28 shows a false joining that should be brake into two chromosomes at the gap. Curation of the ERGA-BGE genome qqChaLymb1 submitted by @auryjm. More information: https://github.com/ERGA-consortium/EARs/pull/90
