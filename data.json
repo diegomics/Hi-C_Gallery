@@ -189,6 +189,11 @@
               "caption": "Haplotyoic duplication, characteristic double-V shape with a drop in coverage can be seen at SUPER_2 scaffol around 3.42Mb. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
             },
             {
+              "src": "images/xbPinRadi1_Genoscope/inversion_xbPinRadi1_Genoscope_01.png",
+              "alt": "xbPinRadi1_Genoscope 01",
+              "caption": ""
+            },
+            {
               "src": "images/xbPinRadi1_Genoscope/duplication_xbPinRadi1_Genoscope_02.png",
               "alt": "xbPinRadi1_Genoscope 02",
               "caption": "Haplotyoic duplication, shows a cross shape and drop in coverage without it being repetitive and the HiC coverage also goes down. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47"
