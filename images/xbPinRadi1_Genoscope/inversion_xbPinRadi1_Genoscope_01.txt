@@ -1,1 +1,1 @@
-There is an invertion at the start of SUPER_10, flip it right after the telomeric segment. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47
+There is an inversion at the start of SUPER_10, flip it right after the telomeric segment. Curation of the ERGA-BGE genome xbPinRadi1 submitted by @bistace. More information: https://github.com/ERGA-consortium/EARs/pull/47
